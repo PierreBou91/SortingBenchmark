@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/selectArraySize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selectArraySize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <Button
+        android:id="@+id/oneThousand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button1000"
+        app:layout_constraintEnd_toStartOf="@+id/tenThousand"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize" />
+
+    <Button
+        android:id="@+id/tenThousand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button10000"
+        app:layout_constraintEnd_toStartOf="@+id/oneHundredThousand"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/oneThousand"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize" />
+
+    <Button
+        android:id="@+id/oneHundredThousand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button100000"
+        app:layout_constraintEnd_toStartOf="@+id/oneMillion"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tenThousand"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize" />
+
+    <Button
+        android:id="@+id/oneMillion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button1000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/oneHundredThousand"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize" />
+
+    <Button
+        android:id="@+id/startBenchmark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonStartBenchmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tenThousand" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startBenchmark" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
