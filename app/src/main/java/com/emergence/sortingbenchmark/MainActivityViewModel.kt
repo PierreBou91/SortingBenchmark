@@ -7,6 +7,8 @@ import com.emergence.sortingbenchmark.model.Algorithm
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
+private const val TAG = "MainActivityViewModel"
+
 class MainActivityViewModel : ViewModel() {
 
     init {
@@ -14,7 +16,6 @@ class MainActivityViewModel : ViewModel() {
     }
 
     var arr: IntArray = intArrayOf(1,2,3)
-    val timer: Long = 0
 
     private val names = listOf(
         "Selection sort",
@@ -44,20 +45,13 @@ class MainActivityViewModel : ViewModel() {
         return arr
     }
 
-    private var _executionTime = MutableLiveData<Long>(timer)
-    val executionTime: LiveData<Long>
-        get() = _executionTime
-
-    private var _index = MutableLiveData(0)
-    val index: LiveData<Int>
-        get() = _index
+    private var executionTime: Long = 0
 
     fun startBench() {
         for ((i,v) in names.withIndex()) {
-            _executionTime.value = measureTimeMillis {
+            executionTime = measureTimeMillis {
                 arr.sort()
             }
-            _index.value = i
         }
     }
 

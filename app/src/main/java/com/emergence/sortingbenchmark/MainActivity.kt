@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
+private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
@@ -16,7 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        listView.adapter = MyCustomAdapter(this)
+        val adapter = MyCustomAdapter(this)
+        listView.adapter = adapter
 
         oneThousand.setOnClickListener {
             viewModel.createAnArray(1000)
@@ -39,10 +42,6 @@ class MainActivity : AppCompatActivity() {
         startBenchmark.setOnClickListener {
             viewModel.startBench()
         }
-
-        viewModel.executionTime.observe(this, Observer { i ->
-            viewModel.allAlgorithms[viewModel.index.value!!].time = viewModel.executionTime.value!!.toString()
-        })
 
         viewModel.arrayIsGenerated.observe(this, Observer { isGenerated ->
             if (!isGenerated) {

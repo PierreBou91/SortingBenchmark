@@ -8,18 +8,18 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
+private const val TAG = "MyCustomAdapter"
+
 class MyCustomAdapter(context: Context): BaseAdapter() {
 
     private val mContext: Context = context
 
-    val names = MainActivityViewModel().allAlgorithms
-
     override fun getCount(): Int {
-        return names.size
+        return MainActivityViewModel().allAlgorithms.size
     }
 
     override fun getItem(p0: Int): Any {
-        return names[p0]
+        return MainActivityViewModel().allAlgorithms[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -32,10 +32,10 @@ class MyCustomAdapter(context: Context): BaseAdapter() {
         val row = layoutInflater.inflate(R.layout.row_algorithm, p2, false)
 
         val nameTextView = row.findViewById<TextView>(R.id.algoName)
-        nameTextView.text = names[p0].name
+        nameTextView.text = MainActivityViewModel().allAlgorithms[p0].name
 
         val timer = row.findViewById<TextView>(R.id.timer)
-        timer.text = names[p0].time
+        timer.text = MainActivityViewModel().allAlgorithms[p0].time
 
         return row
     }
