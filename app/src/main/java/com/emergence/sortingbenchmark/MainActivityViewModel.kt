@@ -1,5 +1,6 @@
 package com.emergence.sortingbenchmark
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,6 +53,7 @@ class MainActivityViewModel : ViewModel() {
             executionTime = measureTimeMillis {
                 arr.sort()
             }
+            allAlgorithms[i].time = executionTime.toString()
         }
     }
 

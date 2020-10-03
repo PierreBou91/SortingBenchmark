@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        val adapter = MyCustomAdapter(this)
+        val adapter = MyCustomAdapter(this, viewModel)
         listView.adapter = adapter
 
         oneThousand.setOnClickListener {
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         startBenchmark.setOnClickListener {
             viewModel.startBench()
+            adapter.notifyDataSetChanged()
         }
 
         viewModel.arrayIsGenerated.observe(this, Observer { isGenerated ->

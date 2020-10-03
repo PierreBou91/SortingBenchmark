@@ -1,6 +1,7 @@
 package com.emergence.sortingbenchmark
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +11,17 @@ import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MyCustomAdapter"
 
-class MyCustomAdapter(context: Context): BaseAdapter() {
+class MyCustomAdapter(context: Context, vm: MainActivityViewModel): BaseAdapter() {
 
     private val mContext: Context = context
+    private val mViewModel: MainActivityViewModel = vm
 
     override fun getCount(): Int {
-        return MainActivityViewModel().allAlgorithms.size
+        return mViewModel.allAlgorithms.size
     }
 
     override fun getItem(p0: Int): Any {
-        return MainActivityViewModel().allAlgorithms[p0]
+        return mViewModel.allAlgorithms[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -27,15 +29,16 @@ class MyCustomAdapter(context: Context): BaseAdapter() {
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+        Log.d(TAG, "getView: Name->${mViewModel.allAlgorithms[p0].name} Time->${mViewModel.allAlgorithms[p0].time}")
 
         val layoutInflater = LayoutInflater.from(mContext)
         val row = layoutInflater.inflate(R.layout.row_algorithm, p2, false)
 
         val nameTextView = row.findViewById<TextView>(R.id.algoName)
-        nameTextView.text = MainActivityViewModel().allAlgorithms[p0].name
+        nameTextView.text = mViewModel.allAlgorithms[p0].name
 
         val timer = row.findViewById<TextView>(R.id.timer)
-        timer.text = MainActivityViewModel().allAlgorithms[p0].time
+        timer.text = mViewModel.allAlgorithms[p0].time
 
         return row
     }
