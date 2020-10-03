@@ -29,7 +29,6 @@ class MyCustomAdapter(context: Context, vm: MainActivityViewModel): BaseAdapter(
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        Log.d(TAG, "getView: Name->${mViewModel.allAlgorithms[p0].name} Time->${mViewModel.allAlgorithms[p0].time}")
 
         val layoutInflater = LayoutInflater.from(mContext)
         val row = layoutInflater.inflate(R.layout.row_algorithm, p2, false)
@@ -38,7 +37,7 @@ class MyCustomAdapter(context: Context, vm: MainActivityViewModel): BaseAdapter(
         nameTextView.text = mViewModel.allAlgorithms[p0].name
 
         val timer = row.findViewById<TextView>(R.id.timer)
-        timer.text = mViewModel.allAlgorithms[p0].time
+        timer.text = "${mViewModel.allAlgorithms[p0].time} ms"
 
         return row
     }

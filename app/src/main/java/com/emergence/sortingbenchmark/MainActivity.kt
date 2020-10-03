@@ -10,40 +10,26 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainActivityViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-
+        val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         val adapter = MyCustomAdapter(this, viewModel)
+
         listView.adapter = adapter
 
-        oneThousand.setOnClickListener {
-            viewModel.createAnArray(1000)
-            startBenchmark.text = "START BENCHMARK WITH ARRAY OF SIZE 1'000"
-        }
-        tenThousand.setOnClickListener {
-            viewModel.createAnArray(10000)
-
-            startBenchmark.text = "START BENCHMARK WITH ARRAY OF SIZE 10'000"
-        }
-        oneHundredThousand.setOnClickListener {
-            viewModel.createAnArray(100000)
-            startBenchmark.text = "START BENCHMARK WITH ARRAY OF SIZE 100'000"
-        }
-        oneMillion.setOnClickListener {
-            viewModel.createAnArray(1000000)
-            startBenchmark.text = "START BENCHMARK WITH ARRAY OF SIZE 1'000'000"
-        }
-
+        // buttons onClickListeners
+        oneThousand.setOnClickListener { viewModel.createAnArray(1000) }
+        tenThousand.setOnClickListener { viewModel.createAnArray(10000) }
+        oneHundredThousand.setOnClickListener { viewModel.createAnArray(100000) }
+        oneMillion.setOnClickListener { viewModel.createAnArray(1000000) }
         startBenchmark.setOnClickListener {
             viewModel.startBench()
             adapter.notifyDataSetChanged()
         }
 
+        // disabling buttons while the array is being created to avoid too much double clicking
         viewModel.arrayIsGenerated.observe(this, Observer { isGenerated ->
             if (!isGenerated) {
                 oneThousand.isEnabled = false

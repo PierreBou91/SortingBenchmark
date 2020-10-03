@@ -1,5 +1,5 @@
 package com.emergence.sortingbenchmark.model
 
-class Algorithm(var name: String, var time: String = "0.00 sec"){
+class Algorithm(var name: String, var time: String = "0"){
 
 }

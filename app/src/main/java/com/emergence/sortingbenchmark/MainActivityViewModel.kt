@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.emergence.sortingbenchmark.algorithms.bubbleSort
+import com.emergence.sortingbenchmark.algorithms.selectionSort
 import com.emergence.sortingbenchmark.model.Algorithm
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
@@ -11,21 +13,14 @@ import kotlin.system.measureTimeMillis
 private const val TAG = "MainActivityViewModel"
 
 class MainActivityViewModel : ViewModel() {
-
-    init {
-
-    }
-
-    var arr: IntArray = intArrayOf(1,2,3)
-
     private val names = listOf(
         "Selection sort",
         "Bubble sort",
         "Merge sort",
         "Quick Sort"
     )
-
     var allAlgorithms: MutableList<Algorithm> = initializeAllAlgo()
+    var arr: IntArray = intArrayOf(1,2,3)
 
     private fun initializeAllAlgo(): MutableList<Algorithm> {
         val tempAlgoList = mutableListOf<Algorithm>()
@@ -50,13 +45,24 @@ class MainActivityViewModel : ViewModel() {
 
     fun startBench() {
         for ((i,v) in names.withIndex()) {
+            val tempArr = IntArray(arr.size)
+            for ((index,value) in arr.withIndex()) {
+                tempArr[index] = value
+            }
             executionTime = measureTimeMillis {
-                arr.sort()
+                superSort(v,tempArr)
             }
             allAlgorithms[i].time = executionTime.toString()
         }
     }
 
+    private fun superSort(algo: String, arr: IntArray) {
+        when (algo) {
+            "Selection sort" -> selectionSort(arr)
+            "Bubble sort" -> bubbleSort(arr)
+            "Merge sort" -> arr.sort()
+        }
+    }
 }
 
 
