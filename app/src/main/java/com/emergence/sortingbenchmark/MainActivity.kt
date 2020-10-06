@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         })
         viewModel.currentTime.observe(this, Observer {
-            timer.text = "%.1f".format(it) + "sec"
+            timer.text = "%.1f".format(it) + " sec"
         })
 
     }
