@@ -13,14 +13,19 @@ import kotlin.system.measureTimeMillis
 private const val TAG = "MainActivityViewModel"
 
 class MainActivityViewModel : ViewModel() {
-    private val names = listOf(
+    private val names: List<String> = listOf(
         "Selection sort",
         "Bubble sort",
         "Merge sort",
         "Quick Sort"
     )
-    var allAlgorithms: MutableList<Algorithm> = initializeAllAlgo()
-    var arr: IntArray = intArrayOf(1,2,3)
+    var allAlgorithms: MutableList<Algorithm>
+    var arr: IntArray
+
+    init {
+        allAlgorithms = initializeAllAlgo()
+        arr = intArrayOf(1,2,3)
+    }
 
     private fun initializeAllAlgo(): MutableList<Algorithm> {
         val tempAlgoList = mutableListOf<Algorithm>()
