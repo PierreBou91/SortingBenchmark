@@ -1,20 +1,22 @@
 package com.emergence.sortingbenchmark.algorithms
 
-fun mergeSort (A: IntArray) {
+fun mergeSort(A: IntArray) {
     sort(A)
 }
+
 fun sort(A: IntArray): IntArray {
 
     val size = A.size
 
-    if(size < 2) return A
+    if (size < 2) return A
 
-    val mid: Int = size/2
+    val mid: Int = size / 2
     val left = A.slice(0 until mid).toIntArray()
     val right = A.slice(mid until size).toIntArray()
 
     return merge(sort(left), sort(right))
 }
+
 fun merge(left: IntArray, right: IntArray): IntArray {
     var L = 0
     var R = 0

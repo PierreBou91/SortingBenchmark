@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MyCustomAdapter"
 
-class MyCustomAdapter(context: Context, vm: MainActivityViewModel): BaseAdapter() {
+class MyCustomAdapter(context: Context, vm: MainActivityViewModel) : BaseAdapter() {
 
     private val mContext: Context = context
     private val mViewModel: MainActivityViewModel = vm

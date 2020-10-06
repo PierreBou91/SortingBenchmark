@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             if (hasSorted) {
                 toggleVisibility(true)
                 adapter.notifyDataSetChanged()
-            }else {
+            } else {
                 toggleVisibility(false)
             }
         })
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.currentTime.observe(this, Observer {
             timer.text = "%.1f".format(it) + " sec"
         })
-
     }
 
     private fun toggleVisibility(isVisible: Boolean) {
@@ -60,5 +59,4 @@ class MainActivity : AppCompatActivity() {
             timer.visibility = View.INVISIBLE
         }
     }
-
 }

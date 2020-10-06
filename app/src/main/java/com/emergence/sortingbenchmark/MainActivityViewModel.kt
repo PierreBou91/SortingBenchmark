@@ -24,7 +24,7 @@ class MainActivityViewModel : ViewModel() {
         "Selection sort",
         "Bubble sort",
         "Merge sort",
-        "Quick Sort"
+        "Quick sort"
     )
 
     var allAlgorithms: MutableList<Algorithm>
@@ -50,6 +50,7 @@ class MainActivityViewModel : ViewModel() {
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = ((120000 - millisUntilFinished) / 1000.0).toFloat()
             }
+
             override fun onFinish() {
             }
         }
@@ -64,21 +65,21 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun startBench(size: Int, isSorted: Boolean) {
-        if (_hasSorted.value == true) {
+        if (_hasSorted.value == true) { // to avoid double button click messing with the sorting
             _hasSorted.value = false
             viewModelScope.launch(Dispatchers.Default) {
                 var executionTime: Long = 0
                 val arr = createAnArray(size, isSorted)
-                for ((i,v) in names.withIndex()) {
+                for ((i, v) in names.withIndex()) {
                     val tempArr = IntArray(arr.size)
                     withContext(Main) {
                         nextAlgo(v)
                     }
-                    for ((index,value) in arr.withIndex()) {
+                    for ((index, value) in arr.withIndex()) {
                         tempArr[index] = value
                     }
                     executionTime = measureTimeMillis {
-                        superSort(v,tempArr)
+                        superSort(v, tempArr)
                     }
                     allAlgorithms[i].time = executionTime.toString()
                 }
@@ -95,6 +96,7 @@ class MainActivityViewModel : ViewModel() {
             "Selection sort" -> selectionSort(arr)
             "Bubble sort" -> bubbleSort(arr)
             "Merge sort" -> mergeSort(arr)
+            "Quick sort" -> arr.sort()
         }
     }
 
@@ -105,7 +107,7 @@ class MainActivityViewModel : ViewModel() {
                 arr[i] = i
             }
         } else {
-            arr = IntArray(size) { Random.nextInt()}
+            arr = IntArray(size) { Random.nextInt() }
         }
         return arr
     }
