@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emergence.sortingbenchmark.algorithms.bubbleSort
+import com.emergence.sortingbenchmark.algorithms.mergeSort
 import com.emergence.sortingbenchmark.algorithms.selectionSort
 import com.emergence.sortingbenchmark.model.Algorithm
 import kotlinx.coroutines.Dispatchers
@@ -83,6 +84,7 @@ class MainActivityViewModel : ViewModel() {
                 }
                 withContext(Main) {
                     _hasSorted.value = true
+                    timer.cancel()
                 }
             }
         }
@@ -92,7 +94,7 @@ class MainActivityViewModel : ViewModel() {
         when (algo) {
             "Selection sort" -> selectionSort(arr)
             "Bubble sort" -> bubbleSort(arr)
-            "Merge sort" -> arr.sort()
+            "Merge sort" -> mergeSort(arr)
         }
     }
 
