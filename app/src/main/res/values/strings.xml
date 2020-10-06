@@ -7,4 +7,6 @@
     <string name="unsortedButton">Random list</string>
     <string name="algoName">NAME OF THE SORTING ALGORITHM</string>
     <string name="time">0 ms</string>
+    <string name="currentAlgoName">Algorithm name</string>
+    <string name="currentAlgoTime">0.0 secs</string>
 </resources>

@@ -35,18 +35,30 @@ class MainActivity : AppCompatActivity() {
                 toggleVisibility(false)
             }
         })
+        viewModel.algoCurrentlySorting.observe(this, Observer {
+            algoName.text = it
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.currentTime.observe(this, Observer {
+//            timer.text = it.toString() + "sec"
+            timer.text = "%.1f".format(it) + "sec"
+        })
 
     }
 
-    fun toggleVisibility(isVisible: Boolean) {
+    private fun toggleVisibility(isVisible: Boolean) {
         if (!isVisible) {
             arraySize.visibility = View.INVISIBLE
             sortedButton.visibility = View.INVISIBLE
             randomButton.visibility = View.INVISIBLE
+            algoName.visibility = View.VISIBLE
+            timer.visibility = View.VISIBLE
         } else {
             arraySize.visibility = View.VISIBLE
             sortedButton.visibility = View.VISIBLE
             randomButton.visibility = View.VISIBLE
+            algoName.visibility = View.INVISIBLE
+            timer.visibility = View.INVISIBLE
         }
     }
 
