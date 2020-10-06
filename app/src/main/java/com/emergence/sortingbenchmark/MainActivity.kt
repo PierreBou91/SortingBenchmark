@@ -2,11 +2,11 @@ package com.emergence.sortingbenchmark
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.databinding.DataBindingUtil
+import android.view.View
+import android.webkit.RenderProcessGoneDetail
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-//import com.emergence.sortingbenchmark.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
@@ -25,11 +25,31 @@ class MainActivity : AppCompatActivity() {
 
         sortedButton.setOnClickListener {
             viewModel.startBench(Integer.parseInt(arraySize.text.toString()), true)
-            adapter.notifyDataSetChanged()
         }
-        unsortedButton.setOnClickListener {
+        randomButton.setOnClickListener {
             viewModel.startBench(Integer.parseInt(arraySize.text.toString()), false)
-            adapter.notifyDataSetChanged()
+        }
+        viewModel.hasSorted.observe(this, Observer { hasSorted ->
+            if (hasSorted) {
+                toggleVisibility(true)
+                adapter.notifyDataSetChanged()
+            }else {
+                toggleVisibility(false)
+            }
+        })
+
+    }
+
+    fun toggleVisibility(isVisible: Boolean) {
+        if (!isVisible) {
+            arraySize.visibility = View.INVISIBLE
+            sortedButton.visibility = View.INVISIBLE
+            randomButton.visibility = View.INVISIBLE
+        } else {
+            arraySize.visibility = View.VISIBLE
+            sortedButton.visibility = View.VISIBLE
+            randomButton.visibility = View.VISIBLE
         }
     }
+
 }

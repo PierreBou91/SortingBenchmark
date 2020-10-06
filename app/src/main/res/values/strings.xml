@@ -3,8 +3,8 @@
     <string name="title">Welcome to Sorting Benchmark !</string>
     <string name="selectArraySize">Please enter the desired array size:</string>
     <string name="hint">10\'000</string>
-    <string name="sortedButton">Sorted</string>
-    <string name="unsortedButton">Unsorted</string>
+    <string name="sortedButton">Sorted list</string>
+    <string name="unsortedButton">Random list</string>
     <string name="algoName">NAME OF THE SORTING ALGORITHM</string>
     <string name="time">0 ms</string>
 </resources>

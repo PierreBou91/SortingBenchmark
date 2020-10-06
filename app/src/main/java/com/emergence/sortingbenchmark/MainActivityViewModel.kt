@@ -1,12 +1,16 @@
 package com.emergence.sortingbenchmark
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.emergence.sortingbenchmark.algorithms.bubbleSort
 import com.emergence.sortingbenchmark.algorithms.selectionSort
 import com.emergence.sortingbenchmark.model.Algorithm
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
@@ -23,8 +27,14 @@ class MainActivityViewModel : ViewModel() {
 
     var allAlgorithms: MutableList<Algorithm>
 
+    private val _hasSorted = MutableLiveData<Boolean>()
+    val hasSorted : LiveData<Boolean>
+        get() = _hasSorted
+
+
     init {
         allAlgorithms = initializeAllAlgo()
+        _hasSorted.value = true
     }
 
     private fun initializeAllAlgo(): MutableList<Algorithm> {
@@ -36,17 +46,25 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun startBench(size: Int, isSorted: Boolean) {
-        var executionTime: Long = 0
-        val arr = createAnArray(size, isSorted)
-        for ((i,v) in names.withIndex()) {
-            val tempArr = IntArray(arr.size)
-            for ((index,value) in arr.withIndex()) {
-                tempArr[index] = value
+        if (_hasSorted.value == true) {
+            _hasSorted.value = false
+            viewModelScope.launch(Dispatchers.Default) {
+                var executionTime: Long = 0
+                val arr = createAnArray(size, isSorted)
+                for ((i,v) in names.withIndex()) {
+                    val tempArr = IntArray(arr.size)
+                    for ((index,value) in arr.withIndex()) {
+                        tempArr[index] = value
+                    }
+                    executionTime = measureTimeMillis {
+                        superSort(v,tempArr)
+                    }
+                    allAlgorithms[i].time = executionTime.toString()
+                }
+                withContext(Main) {
+                    _hasSorted.value = true
+                }
             }
-            executionTime = measureTimeMillis {
-                superSort(v,tempArr)
-            }
-            allAlgorithms[i].time = executionTime.toString()
         }
     }
 
