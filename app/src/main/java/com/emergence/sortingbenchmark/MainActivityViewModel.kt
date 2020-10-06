@@ -13,18 +13,18 @@ import kotlin.system.measureTimeMillis
 private const val TAG = "MainActivityViewModel"
 
 class MainActivityViewModel : ViewModel() {
+
     private val names: List<String> = listOf(
         "Selection sort",
         "Bubble sort",
         "Merge sort",
         "Quick Sort"
     )
+
     var allAlgorithms: MutableList<Algorithm>
-    var arr: IntArray
 
     init {
         allAlgorithms = initializeAllAlgo()
-        arr = intArrayOf(1,2,3)
     }
 
     private fun initializeAllAlgo(): MutableList<Algorithm> {
@@ -35,20 +35,9 @@ class MainActivityViewModel : ViewModel() {
         return tempAlgoList
     }
 
-    private var _arrayIsGenerated = MutableLiveData<Boolean>(true)
-    val arrayIsGenerated: LiveData<Boolean>
-        get() = _arrayIsGenerated
-
-    fun createAnArray(size: Int): IntArray {
-        _arrayIsGenerated.value = false
-        arr = IntArray(size) { Random.nextInt() }
-        _arrayIsGenerated.value = true
-        return arr
-    }
-
-    private var executionTime: Long = 0
-
-    fun startBench() {
+    fun startBench(size: Int, isSorted: Boolean) {
+        var executionTime: Long = 0
+        val arr = createAnArray(size, isSorted)
         for ((i,v) in names.withIndex()) {
             val tempArr = IntArray(arr.size)
             for ((index,value) in arr.withIndex()) {
@@ -67,6 +56,18 @@ class MainActivityViewModel : ViewModel() {
             "Bubble sort" -> bubbleSort(arr)
             "Merge sort" -> arr.sort()
         }
+    }
+
+    private fun createAnArray(size: Int, isSorted: Boolean): IntArray {
+        var arr = IntArray(size)
+        if (isSorted) {
+            for (i in 0 until size) {
+                arr[i] = i
+            }
+        } else {
+            arr = IntArray(size) { Random.nextInt()}
+        }
+        return arr
     }
 }
 
