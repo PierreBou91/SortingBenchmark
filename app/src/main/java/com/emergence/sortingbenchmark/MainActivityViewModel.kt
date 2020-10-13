@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.emergence.sortingbenchmark.algorithms.bubbleSort
-import com.emergence.sortingbenchmark.algorithms.mergeSort
-import com.emergence.sortingbenchmark.algorithms.selectionSort
+import com.emergence.sortingbenchmark.algorithms.*
 import com.emergence.sortingbenchmark.model.Algorithm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
@@ -24,7 +22,9 @@ class MainActivityViewModel : ViewModel() {
         "Selection sort",
         "Bubble sort",
         "Merge sort",
-        "Quick sort"
+        "Quick sort",
+        "Insertion sort",
+        "Heap sort"
     )
 
     var allAlgorithms: MutableList<Algorithm>
@@ -97,6 +97,8 @@ class MainActivityViewModel : ViewModel() {
             "Bubble sort" -> bubbleSort(arr)
             "Merge sort" -> mergeSort(arr)
             "Quick sort" -> arr.sort()
+            "Insertion sort" -> insertionSort(arr)
+            "Heap sort" -> heapSort(arr)
         }
     }
 
