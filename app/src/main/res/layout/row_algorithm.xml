@@ -5,19 +5,22 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/algoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/algoName"
         app:layout_constraintBottom_toTopOf="@+id/timer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TextAppearance.MyTheme.Body1"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/timer"
+        style="@style/TextAppearance.MyTheme.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
