@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="14dp"
+    android:background="@color/backgroundColor">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.MyTheme.Headline4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/selectArraySize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/selectArraySize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_margin="2dp"
+        style="@style/TextAppearance.MyTheme.Body1" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/arraySize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintEnd_toStartOf="@+id/sortedButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectArraySize"
+        android:layout_margin="2dp"
+        style="@style/TextAppearance.MyTheme.Body1"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sortedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sortedButton"
+        app:layout_constraintEnd_toStartOf="@+id/randomButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/arraySize"
+        app:layout_constraintTop_toBottomOf="@+id/selectArraySize"
+        android:layout_margin="2dp"
+        style="@style/AppTheme.Button"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/randomButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/unsortedButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sortedButton"
+        app:layout_constraintTop_toBottomOf="@+id/selectArraySize"
+        android:layout_margin="2dp"
+        style="@style/AppTheme.Button"
+        android:elevation="50dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/algoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/currentAlgoName"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/listView"
+        app:layout_constraintEnd_toStartOf="@+id/timer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize"
+        android:layout_margin="2dp"
+        style="@style/TextAppearance.MyTheme.Body1"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/currentAlgoTime"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/listView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/algoName"
+        app:layout_constraintTop_toBottomOf="@id/selectArraySize"
+        android:layout_margin="2dp"
+        style="@style/TextAppearance.MyTheme.Body2"/>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sortedButton"
+        android:layout_margin="2dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
