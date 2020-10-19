@@ -22,10 +22,20 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = adapter
 
         sortedButton.setOnClickListener {
-            viewModel.startBench(Integer.parseInt(arraySize.text.toString()), true)
+            when {
+                arraySize.text.toString().isEmpty() -> arraySize.error = "Size should be > 0 !"
+                Integer.parseInt(arraySize.text.toString()) > 150000 -> arraySize.error =
+                    "Array bigger than 150k elements would take a very long time!"
+                else -> viewModel.startBench(Integer.parseInt(arraySize.text.toString()), true)
+            }
         }
         randomButton.setOnClickListener {
-            viewModel.startBench(Integer.parseInt(arraySize.text.toString()), false)
+            when {
+                arraySize.text.toString().isEmpty() -> arraySize.error = "Size should be > 0 !"
+                Integer.parseInt(arraySize.text.toString()) > 150000 -> arraySize.error =
+                    "Array bigger than 150k elements would take a very long time!"
+                else -> viewModel.startBench(Integer.parseInt(arraySize.text.toString()), false)
+            }
         }
         viewModel.hasSorted.observe(this, Observer { hasSorted ->
             if (hasSorted) {

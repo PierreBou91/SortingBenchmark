@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Sorting Benchmark</string>
-    <string name="title">Sorting Benchmark !</string>
-    <string name="selectArraySize">Please enter the desired array size:</string>
+    <string name="app_name">Sortem</string>
+    <string name="title">SORTEM !</string>
+    <string name="selectArraySize">Please enter the desired array size and click on the type of list you want to generate to compare the speed of each sorting algorithm.</string>
     <string name="hint">10\'000</string>
     <string name="sortedButton">Sorted list</string>
     <string name="unsortedButton">Random list</string>
